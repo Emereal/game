@@ -1,0 +1,55 @@
+Living Room
+The small living room contains a couch, coffee table, and two
+armchairs. Pictures of various cousins adorn the walls along
+with two of your aunt's wretched attempts at oil painting. 
+You can't help but notice that the carpet could use a good
+vacuuming. Doorways lead west to your father's office, north 
+to your bedroom, and east to the kitchen.
+#
+Bedroom
+This is your domain and has been since your family moved here
+when you were six. A nightstand with a Superman lamp sits next
+to your twin bed. Posters of various anime characters cover one
+wall. A pile of laundry, slowly but surely attaining sentience,
+occupies the far corner.
+The door to the attic is in the ceiling above the pile of
+clothes. You can return south to the living room.
+#
+Attic
+Upon crawling up into the attic, the dust immediately hits you
+along with the feeling that there are definitely multiple
+spiders up here. Around you, you see multiple boxes and old
+appliances that we stored or didn't need until the winter.
+Spiderwebs connect between the boxes, as well as a single strip
+of light from the small window ahead. It's dusty up here, so
+don't launder around too long before you get sick.
+#
+Office
+This, is The Office. No, not the show, but a room in your house
+used by your father. There are papers scattered across the desk
+in front of you, along with a photo of your parents years
+before you were born, both adorned in white. In the middle of
+the desk, a Dell computer sits idle with many messy cords
+hooked into it. When you try to open it, you realize that it's
+locked with a password that you do not know.
+#
+Kitchen
+The kitchen, your favorite place to go when you're hungry
+specifically in the middle of the night. The island stands
+between you and salvation, the fridge sitting right next to
+the sink which seems to be dripping because someone didn't turn
+it off correctly. You should go turn it off. There's also
+plenty of items on the counter and many shelves you can search
+for more items, maybe they'll help you get into the garage south
+of here.
+#
+Garage
+This is it, what you've done all this work to do. 
+Much to your disappointment, it's pretty underwhelming. The car
+lies in front of you in all its amazing glory, you've always
+loved Supras, but you can also see some other things around
+like a gas canister and a toolbox. There's a few drawers around
+that you can see are slightly dusty due to your father' using
+the garage as a workshop. However, thanks to that you might be
+able to find some other things if you look around.
+#
