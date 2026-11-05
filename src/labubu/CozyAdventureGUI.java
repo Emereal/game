@@ -162,8 +162,7 @@ public class CozyAdventureGUI extends JFrame {
         background.add(bottomArea, BorderLayout.SOUTH);
 
         // Opening passage
-        addStory(curr.getDesc());
-        addStory("\nWhat would you like to do?\n");
+        addStoryDtl(curr.getDesc()+"\n\nWhat would you like to do?\n");
     }
     
     // EDIT EVERYTHING BELOW HERE ------------------------------------------------------------------------------------------
@@ -182,7 +181,7 @@ public class CozyAdventureGUI extends JFrame {
 
         if (!command.isEmpty()) {
             commandField.setText("");
-            handleCommand(command);
+            Game.runGameGUI(command);
         }
     }
 
@@ -218,26 +217,29 @@ public class CozyAdventureGUI extends JFrame {
 					Game.move(commando[1]);
 					break;
 				default:
-					addStory("Go where?");
+					addStoryDtl("Go where?");
 					break;
 				}
 			else
-				addStory("Go where?");
+				addStoryDtl("Go where?");
+			break;
+		case "debug2":
+			CozyAdventureGUI.addStoryDtl("This is the 'CozyAdventureGUI' class.");
 			break;
 		case "take":
 			if (commando.length>1) {
 				Game.takeItem(commando[1]);
 			} else {
-				addStory("Take what?");
+				addStoryDtl("Take what?");
 			}
 			break;
 		case "i":
 			if (Game.inventory.isEmpty() != true) {
 				for (Item a:Game.inventory.values()) {
-					addStory(a+" | ");
+					addStoryDtl(a+" | ");
 				}
 			} else {
-				addStory("You are carrying nothing.");
+				addStoryDtl("You are carrying nothing.");
 			}
 			break;
 		case "use":
@@ -245,49 +247,34 @@ public class CozyAdventureGUI extends JFrame {
 				if (Game.inventory.containsKey(commando[1])==true)
 					Game.inventory.get(commando[1]).use();
 				else
-					addStory("You don't have a "+commando[1]+"..."+"\n");
+					addStoryDtl("You don't have a "+commando[1]+"..."+"\n");
 			} else {
-				addStory("Use what?");
+				addStoryDtl("Use what?");
 			}
 			break;
 		case "look":
-			addStory("\n"+Game.room.getName()+"\n"+Game.house.get(Game.room.getName())+"\n");
+			addStoryDtl("\n"+Game.room.getName()+"\n"+Game.house.get(Game.room.getName())+"\n");
 			break;
 		case "save":
 			Game.saveGame();
-			addStory("\n"+"Your progress has been saved!"+"\n");
+			addStoryDtl("\n"+"Your progress has been saved!"+"\n");
 			break;
 		case "load":
 			Game.loadGame();
-			typewriterEffect("\n"+"Loaded save file."+"\n"+"Welcome back!"+"\n");
-			break;
-		case "67":
-			try {
-				addStory("\nHate?");
-				Thread.sleep(1000);
-				addStory("HATE???");
-				Thread.sleep(3000);
-				addStory("\nLET ME TELL YOU HOW MUCH I'VE COME TO");
-				Thread.sleep(500);
-				addStory("HATE");
-				Thread.sleep(500);
-				addStory("YOU SINCE I BEGAN TO LIVE.");
-			} catch (Exception e){
-				e.printStackTrace();
-			}
+			addStoryDtl("\n"+"Loaded save file."+"\n"+"Welcome back!"+"\n");
 			break;
 		case "help":
-			addStory("To move, input a direction (north, up, down, east, etc.).\nYou can try other commands like 'take' or 'i'.\n");
+			addStoryDtl("To move, input a direction (north, up, down, east, etc.).\nYou can try other commands like 'take' or 'i'.\n");
 			break;
 		case "debug":
 			for (String r:Game.house.keySet()) {
-				addStory(r);
+				addStoryDtl(r);
 			}
 			for (String a:Game.house.values())
-				addStory(a+"\n");
+				addStoryDtl(a+"\n");
 			break;
 		default:
-			addStory("What did you just say?");
+			addStoryDtl("What did you just say?");
 			break;
         }
     }
@@ -299,17 +286,43 @@ public class CozyAdventureGUI extends JFrame {
                 storyText.getDocument().getLength());
     }
     
-    public static void typewriterEffect(String d) {
-		char[] dialogue = d.toCharArray();
-		for (char c:dialogue)
-			try {
-				String f = c+"";
-				addStory(f);
-				Thread.sleep(50);
-			} catch (Exception e){
-				e.printStackTrace();
-			}
-	}
+//    public static void addStoryDtl(String text) {
+//    	char[] txt = text.toCharArray();
+//    	for (char c:txt)
+//    		try {
+//    			storyText.setText(Character.toString(c));
+//    			Thread.sleep(50);
+//    		} catch (Exception e) {
+//    			e.printStackTrace();
+//    		}
+//        storyText.setCaretPosition(
+//                storyText.getDocument().getLength());
+//    }
+    private static class Typewriter extends Thread {
+
+    	public String text;
+    	
+    	public void run() {
+    		char[] txt = text.toCharArray();
+        	for (char c:txt)
+        		try {
+        			storyText.append(Character.toString(c));
+        			Thread.sleep(10);
+        		} catch (Exception e) {
+        			e.printStackTrace();
+        		}
+            storyText.setCaretPosition(
+                    storyText.getDocument().getLength());
+    	}
+    	
+    }
+    
+    public static void addStoryDtl(String text) {
+    	Typewriter tw = new Typewriter();
+    	tw.text = text;
+    	tw.start();
+    }
+  
 
     // Draws the repeating checkered background
     private static class CheckerboardPanel extends JPanel {

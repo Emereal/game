@@ -13,13 +13,13 @@ public class OfficeKey extends Item{
 	public void use() {
 		if (Game.getCurrentRoom().getName().equals("Bedroom")) {
 			if (usedKey) {
-				CozyAdventureGUI.addStory("You already opened the office door!");
+				CozyAdventureGUI.addStoryDtl("You already opened the office door!");
 			} else {
 				Game.getCurrentRoom().getExit(1).setLockStatus(false);
 				usedKey = true;
-				CozyAdventureGUI.addStory("Using the office key, you are able to jam the lock so badly that\nthe lock breaks, rendering the security of your father's office null and void. Perhaps\nyou should stop using keys from now on. The Office is now unlocked!");
+				CozyAdventureGUI.addStoryDtl("Using the office key, you are able to jam the lock so badly that\nthe lock breaks, rendering the security of your father's office null and void. Perhaps\nyou should stop using keys from now on. The Office is now unlocked!");
 			}
 		} else
-			CozyAdventureGUI.addStory("You don't see any way to use the office key…");
+			CozyAdventureGUI.addStoryDtl("You don't see any way to use the office key…");
 	}
 }

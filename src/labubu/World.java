@@ -26,8 +26,9 @@ public class World {
 		livingRoom.addItem("musicbox", new Item("Music Box"));
 		livingRoom.addHeavyItem("couch", new Item("Couch"));
 		kitchen.addItem("knife", new Item("Knife"));
-		kitchen.addItem("flashlight", new Item("Flashlight"));
+		kitchen.addItem("flashlight", new Flashlight());
 		kitchen.addItem("mysteriousorb", new Item("Mysterious Orb"));
+		attic.addHeavyItem("safe", new Safe());
 		office.setLockStatus(true);
 		attic.setLockStatus(true);
 		garage.setLockStatus(true);

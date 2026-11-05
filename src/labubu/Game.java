@@ -27,7 +27,7 @@ public class Game {
 	public static HashMap<String, Room> rooms = new HashMap<>();
 	public static Room room = World.buildWorld();
 	public static HashMap<String, String> house = new HashMap<>();
-	public static HashMap<String, Item> inventory = new HashMap<>();
+	protected static HashMap<String, Item> inventory = new HashMap<>();
 	
 	private final static JTextArea storyText = new JTextArea();
     private final static JTextField commandField = new JTextField();
@@ -208,57 +208,57 @@ public class Game {
 	public static void move(String dir) {
 		if (dir.equals("east")) {
 			if (room.getExit(0) == null) {
-				CozyAdventureGUI.addStory("You cannot move east!");
+				CozyAdventureGUI.addStoryDtl("You cannot move east!");
 			} else if (room.getExit(0).getLockStatus()==true){
-				CozyAdventureGUI.addStory("The "+room.getExit(0).getName()+" is locked! Try to look around!");
+				CozyAdventureGUI.addStoryDtl("The "+room.getExit(0).getName()+" is locked! Try to look around!");
 			} else {
 				room = room.getExit(0);
-				CozyAdventureGUI.addStory("\nYou moved east to the "+room.getName()+"\n");
+				CozyAdventureGUI.addStoryDtl("\nYou moved east to the "+room.getName()+"\n");
 			}
 		} else if (dir.equals("west")) {
 			if (room.getExit(1) == null) {
-				CozyAdventureGUI.addStory("You cannot move west!");
+				CozyAdventureGUI.addStoryDtl("You cannot move west!");
 			} else if (room.getExit(1).getLockStatus()==true){
-				CozyAdventureGUI.addStory("The "+room.getExit(1).getName()+" is locked! Try to look around!");
+				CozyAdventureGUI.addStoryDtl("The "+room.getExit(1).getName()+" is locked! Try to look around!");
 			} else {
 				room = room.getExit(1);
-				CozyAdventureGUI.addStory("\nYou moved west to the "+room.getName()+"\n");
+				CozyAdventureGUI.addStoryDtl("\nYou moved west to the "+room.getName()+"\n");
 			}
 		} else if (dir.equals("north")) {
 			if (room.getExit(2) == null) {
-				CozyAdventureGUI.addStory("You cannot move north!");
+				CozyAdventureGUI.addStoryDtl("You cannot move north!");
 			} else if (room.getExit(2).getLockStatus()==true){
-				CozyAdventureGUI.addStory("The "+room.getExit(2).getName()+" is locked! Try to look around!");
+				CozyAdventureGUI.addStoryDtl("The "+room.getExit(2).getName()+" is locked! Try to look around!");
 			} else {
 				room = room.getExit(2);
-				CozyAdventureGUI.addStory("\nYou moved north to the "+room.getName()+"\n");
+				CozyAdventureGUI.addStoryDtl("\nYou moved north to the "+room.getName()+"\n");
 			}
 		} else if (dir.equals("south")) {
 			if (room.getExit(3) == null) {
-				CozyAdventureGUI.addStory("You cannot move south!");
+				CozyAdventureGUI.addStoryDtl("You cannot move south!");
 			} else if (room.getExit(3).getLockStatus()==true){
-				CozyAdventureGUI.addStory("The "+room.getExit(3).getName()+" is locked! Try to look around!");
+				CozyAdventureGUI.addStoryDtl("The "+room.getExit(3).getName()+" is locked! Try to look around!");
 			} else {
 				room = room.getExit(3);
-				CozyAdventureGUI.addStory("\nYou moved south to the "+room.getName()+"\n");
+				CozyAdventureGUI.addStoryDtl("\nYou moved south to the "+room.getName()+"\n");
 			}
 		} else if (dir.equals("up")) {
 			if (room.getExit(4) == null) {
-				CozyAdventureGUI.addStory("You cannot move up!");
+				CozyAdventureGUI.addStoryDtl("You cannot move up!");
 			} else if (room.getExit(4).getLockStatus()==true){
-				CozyAdventureGUI.addStory("The "+room.getExit(4).getName()+" is locked! Try to look around!");
+				CozyAdventureGUI.addStoryDtl("The "+room.getExit(4).getName()+" is locked! Try to look around!");
 			} else {
 				room = room.getExit(4);
-				CozyAdventureGUI.addStory("\nYou moved up to the "+room.getName()+"\n");
+				CozyAdventureGUI.addStoryDtl("\nYou moved up to the "+room.getName()+"\n");
 			}
 		} else if (dir.equals("down")) {
 			if (room.getExit(5) == null) {
-				CozyAdventureGUI.addStory("You cannot move down!");
+				CozyAdventureGUI.addStoryDtl("You cannot move down!");
 			} else if (room.getExit(5).getLockStatus()==true){
-				CozyAdventureGUI.addStory("The "+room.getExit(5).getName()+" is locked! Try to look around!");
+				CozyAdventureGUI.addStoryDtl("The "+room.getExit(5).getName()+" is locked! Try to look around!");
 			} else {
 				room = room.getExit(5);
-				CozyAdventureGUI.addStory("\nYou moved down to the "+room.getName()+"\n");
+				CozyAdventureGUI.addStoryDtl("\nYou moved down to the "+room.getName()+"\n");
 			}
 		}
 	}
@@ -266,13 +266,13 @@ public class Game {
 	public static void takeItem(String item) {
 		if (room.getItem(item.toLowerCase())!=null) {
 			if (room.isHeavy(item.toLowerCase())!=true) {
-				CozyAdventureGUI.addStory("\nYou've gotten a(n) "+room.getItem(item)+"!!");
+				CozyAdventureGUI.addStoryDtl("\nYou've gotten a(n) "+room.getItem(item)+"!!");
 				inventory.put(item, room.getItem(item));
 				room.removeItem(item);
 			} else
-				CozyAdventureGUI.addStory("You can't lift the "+room.getItem(item)+"!");
+				CozyAdventureGUI.addStoryDtl("You can't lift the "+room.getItem(item)+"!");
 		} else {
-			CozyAdventureGUI.addStory("There is no "+item+" to be taken...");
+			CozyAdventureGUI.addStoryDtl("There is no "+item+" to be taken...");
 		}
 	}
 	
@@ -354,67 +354,148 @@ public class Game {
 	}
 	
 	    // Basic example game logic
-	    private static void runGameGUI(String rawCommand) {
-	        String command = rawCommand.toLowerCase(Locale.ROOT).trim().replaceAll("\\b(the|to|out)\\b", "");
+	    public static void runGameGUI(String rawCommand) {
+	    	Game.loadDescriptions();
+	    	String command = rawCommand.toLowerCase(Locale.ROOT).trim().replaceAll("\\b(the|to|out)\\b", "");
 	        String militia = command.replaceAll("\\s+", " ");
 	        String[] commando = militia.split(" ");
-	        addStory("\n> " + rawCommand);
+	        CozyAdventureGUI.addStory("\n> " + rawCommand);
 	        
 	        //just change switch cases to ours
 	        switch (commando[0]) {
 			case "go":
-				switch(commando[1]) {
-				case "up":
-					move(commando[1]);
-					break;
-				case "down":
-					move(commando[1]);
-					break;
-				case "north":
-					move(commando[1]);
-					break;
-				case "south":
-					move(commando[1]);
-					break;
-				case "east":
-					move(commando[1]);
-					break;
-				case "west":
-					move(commando[1]);
-					break;
-				}
+				if (commando.length>1)
+					switch(commando[1]) {
+					case "up":
+						Game.move(commando[1]);
+						break;
+					case "down":
+						Game.move(commando[1]);
+						break;
+					case "north":
+						Game.move(commando[1]);
+						break;
+					case "south":
+						Game.move(commando[1]);
+						break;
+					case "east":
+						Game.move(commando[1]);
+						break;
+					case "west":
+						Game.move(commando[1]);
+						break;
+					default:
+						CozyAdventureGUI.addStoryDtl("Go where?");
+						break;
+					}
+				else
+					CozyAdventureGUI.addStoryDtl("Go where?");
 				break;
 			case "take":
 				if (commando.length>1) {
-					takeItem(commando[1]);
+					Game.takeItem(commando[1]);
 				} else {
-					addStory("Take what?");
+					CozyAdventureGUI.addStoryDtl("Take what?");
 				}
 				break;
 			case "i":
 				if (inventory.isEmpty() != true) {
+					CozyAdventureGUI.addStory("\n\nYou have:\n");
 					for (Item a:inventory.values()) {
-						addStory(a+" | ");
+						CozyAdventureGUI.addStory("\n\t"+a);
 					}
 				} else {
-					addStory("You are carrying nothing.");
+					CozyAdventureGUI.addStoryDtl("You are carrying nothing.");
 				}
 				break;
+			case "use":
+				if (commando.length>1) {
+					if (inventory.containsKey(commando[1])==true)
+						inventory.get(commando[1]).use();
+					else
+						CozyAdventureGUI.addStoryDtl("You don't have a "+commando[1]+"..."+"\n");
+				} else {
+					CozyAdventureGUI.addStoryDtl("Use what?");
+				}
+				break;
+			case "open":
+				if (commando.length>1) {
+					if (room.getHeavyItem(commando[1])!=null)
+						room.getHeavyItem(commando[1]).open();
+					else if (inventory.containsKey(commando[1]))
+						inventory.get(commando[1]).open();
+					else
+						CozyAdventureGUI.addStoryDtl("There is no "+commando[1]+" to open..."+"\n");
+				} else {
+					CozyAdventureGUI.addStoryDtl("Close.");
+				}
+				break;
+			case "close":
+				if (commando.length>1) {
+					if (room.getHeavyItem(commando[1])!=null)
+						room.getHeavyItem(commando[1]).close();
+					else if (inventory.containsKey(commando[1]))
+						inventory.get(commando[1]).close();
+					else
+						CozyAdventureGUI.addStoryDtl("There is no "+commando[1]+" to close..."+"\n");
+				} else {
+					CozyAdventureGUI.addStoryDtl("Open.");
+				}
+				break;
+			case "read":
+				if (commando.length>1) {
+					if (inventory.containsKey(commando[1])==true)
+						inventory.get(commando[1]).read();
+					else
+						CozyAdventureGUI.addStoryDtl("You don't have a "+commando[1]+"..."+"\n");
+				} else {
+					CozyAdventureGUI.addStoryDtl("Read what?");
+				}
+				break;
+			case "look":
+				CozyAdventureGUI.addStoryDtl("\n"+room.getName()+"\n"+house.get(room.getName())+"\n");
+				break;
+			case "check":
+				if (commando.length>1) {
+					if (commando[1].equals("change")) {
+						if (room.getName().equals("Attic")) {
+							room.getHeavyItem("safe").checkChange();
+						} else {
+							CozyAdventureGUI.addStoryDtl("\nWhat are you talking about?? You can't do that here.");
+						}
+					} else {
+						CozyAdventureGUI.addStoryDtl("You can't check that dude.");
+					}
+				} else {
+					CozyAdventureGUI.addStoryDtl("You checkin me out or somethin?");
+				}
+				break;
+			case "save":
+				saveGame();
+				CozyAdventureGUI.addStoryDtl("\n"+"Your progress has been saved!"+"\n");
+				break;
+			case "load":
+				loadGame();
+				CozyAdventureGUI.addStoryDtl("\n"+"Loaded save file."+"\n"+"Welcome back!"+"\n");
+				break;
 			case "help":
-				addStory("To move, input a direction (north, up, down, east, etc.).\nYou can try other commands like 'take' or 'i'.\n");
+				CozyAdventureGUI.addStoryDtl("To move, input a direction (north, up, down, east, etc.).\nYou can try other commands like 'take' or 'i'.\n");
 				break;
 			case "debug":
 				for (String r:house.keySet()) {
-					addStory(r);
+					CozyAdventureGUI.addStory(r);
 				}
 				for (String a:house.values())
-					addStory(a+"\n");
+					CozyAdventureGUI.addStory(a+"\n");
+				break;
+			case "debug2":
+				CozyAdventureGUI.addStoryDtl("This is the 'Game' class.");
 				break;
 			default:
-				addStory("What did you just say?");
+				CozyAdventureGUI.addStoryDtl("What did you just say?");
 				break;
 	        }
-		}
+	    }
 //	            case "look":
 //	            case "look around":
 //	                addStory(

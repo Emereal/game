@@ -56,6 +56,12 @@ public class Room implements Serializable{
 		return null;
 	}
 	
+	public Item getHeavyItem(String name) {
+		if (heavyitems.get(name)!=null)
+			return heavyitems.get(name);
+		return null;
+	}
+	
 	public boolean isHeavy(String name) {
 		if (heavyitems.get(name)!=null)
 			return true;
